@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard | PahelaPride</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* ======= PahelaPride Theme ======= */
+    body {
+      background: linear-gradient(135deg, #ff4d6d, #ff758f, #ffc2d1);
+      min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+    }
+
+    .navbar {
+      background: linear-gradient(90deg, #d6336c, #ff4d6d);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #fff !important;
+    }
+
+    .nav-link {
+      color: #fff !important;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: #ffe6ea !important;
+    }
+
+    .card {
+      border: none;
+      border-radius: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    .card-body {
+      border-radius: 16px;
+    }
+
+    .bg-info {
+      background-color: #ff85a1 !important;
+    }
+
+    .bg-warning {
+      background-color: #ffccd5 !important;
+      color: #5c0000 !important;
+    }
+
+    .bg-success {
+      background-color: #c9184a !important;
+    }
+
+    h2.text-primary {
+      color: #fff !important;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ======= Navbar ======= -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white fs-4" href="/admin/dashboard">
+      PahelaPride Admin
+    </a>
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item"><a class="nav-link active" href="/admin/dashboard">Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ======= Dashboard Section ======= -->
+<div class="container mt-5">
+  <h2 class="text-primary mb-4 text-center">Administrator Dashboard</h2>
+
+  <div class="row text-center g-4">
+
+    <!-- Total Employees -->
+    <div class="col-md-4">
+      <a href="/admin/manage-employees" class="text-decoration-none">
+        <div class="card shadow-sm border-0">
+          <div class="card-body bg-info text-white py-4">
+            <h5>Total Employees</h5>
+            <h2>{{ total_employees }}</h2>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Pending Leaves -->
+    <div class="col-md-4">
+      <a href="/admin/leaves" class="text-decoration-none">
+        <div class="card shadow-sm border-0">
+          <div class="card-body bg-warning text-dark py-4">
+            <h5>Pending Leaves</h5>
+            <h2>{{ pending_leaves }}</h2>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Salary Overview -->
+    <div class="col-md-4">
+      <a href="{{ url_for('admin_salary') }}" class="text-decoration-none">
+        <div class="card shadow-sm border-0">
+          <div class="card-body bg-success text-white py-4">
+            <h5>Average Monthly Salary</h5>
+            <h2>৳ {{ "%.2f"|format(avg_salary) }}</h2>
+            <p class="mb-0 small">(Click to view all employees)</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
